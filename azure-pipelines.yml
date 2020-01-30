@@ -31,7 +31,7 @@ steps:
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'XUnit'
-    testResultsFiles: '**/TEST-*.xml'
+    testResultsFiles: '**/TEST-results.xml'
 
 
 
