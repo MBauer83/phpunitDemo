@@ -1,0 +1,28 @@
+{
+  "name": "mbauer/boolen-logic",
+  "description": "A library implementing propositional logic as Boolean logic",
+  "minimum-stability": "dev",
+  "license": "GNU",
+  "authors": [
+    {
+      "name": "Michael Bauer",
+      "email": "mbauer.mphil@googlemail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "MBauer\\BooleanLogic\\": "src/BooleanLogic"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "MBauer\\BooleanLogic\\tests\\": "tests"
+    }
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.5.2"
+  }
+}
