@@ -13,6 +13,7 @@ namespace MBauer\BooleanLogic;
 use ArrayAccess;
 use ArrayIterator;
 use InvalidArgumentException;
+use Iterator;
 use IteratorAggregate;
 use OutOfBoundsException;
 use function array_key_exists;
@@ -33,7 +34,7 @@ class Domain implements ArrayAccess, IteratorAggregate
         }
     }
 
-    public function getIterator(): \Iterator
+    public function getIterator(): Iterator
     {
         return new ArrayIterator($this->elements);
     }

@@ -5,6 +5,7 @@ namespace MBauer\BooleanLogic\tests\unit;
 use MBauer\BooleanLogic\NegationImpl;
 use MBauer\BooleanLogic\PrimitiveBooleanValue;
 use PHPUnit\Framework\TestCase;
+use Throwable;
 
 class NegationImplTest extends TestCase
 {
@@ -21,12 +22,12 @@ class NegationImplTest extends TestCase
     /**
      * Setting up fixtures to test for no exception thrown
      */
-    public function testForSmoke()
+    public function testForSmoke(): void
     {
 
         try {
             $notTrue = new NegationImpl($this->trueValFixture);
-        } catch (\Throwable $t) {
+        } catch (Throwable $t) {
             $this->fail('Constructing NegationImpl with PrimitiveBooleanValue throws exception. Exception: ' . $t->getMessage());
             return;
         }
@@ -35,20 +36,20 @@ class NegationImplTest extends TestCase
     }
 
 
-    public function testNegateTrueIsFalse()
+    public function testNegateTrueIsFalse(): void
     {
         $notTrue = new NegationImpl($this->trueValFixture);
         $this->assertFalse($notTrue->getValue());
     }
 
 
-    public function testNegateFalseIsTrue()
+    public function testNegateFalseIsTrue(): void
     {
         $notFalse = new NegationImpl($this->falseValFixture);
         $this->assertTrue($notFalse->getValue());
     }
 
-    public function testGetInnerValue()
+    public function testGetInnerValue(): void
     {
 
     }

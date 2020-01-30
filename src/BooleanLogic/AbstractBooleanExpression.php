@@ -132,12 +132,10 @@ abstract class AbstractBooleanExpression implements BooleanExpression
                  * @var $context Domain
                  */
                 $val = $context->offsetExists($key) ? $context->offsetGet($key) : null;
-            } else {
-                if (property_exists($context,$key)) {
-                    $reflProp = new ReflectionProperty($context,$key);
-                    $reflProp->setAccessible(true);
-                    $val = $reflProp->getValue();
-                }
+            } else if (property_exists($context,$key)) {
+                $reflProp = new ReflectionProperty($context,$key);
+                $reflProp->setAccessible(true);
+                $val = $reflProp->getValue();
             }
         }
         if ($isObj && $val instanceof NamedBooleanExpression) {

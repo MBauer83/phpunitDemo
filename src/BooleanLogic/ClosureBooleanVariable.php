@@ -49,33 +49,29 @@ class ClosureBooleanVariable extends GenericBooleanVariable
                     !$params[0]->hasType()
                 ||  $params[0]->isArray()
                 ||  (
-                            $reflType = $params[0]->getType()
+                            ($reflType = $params[0]->getType())
                         &&  !$reflType->allowsNull()
-                        &&  (
+                        && (
                                 $reflType->getName() === stdClass::class
-                            ||  $reflType->getName() === Domain::class
+                            || $reflType->getName() === Domain::class
                         )
                 )
             );
-        $param2IsReferenceArray = !$has2Params ?
-            false : (
-                    $params[1]->isArray()
-                &&  $params[1]->isPassedByReference()
-            );
+
         $returnTypeIsBool = null !== $returnType && $returnType->getName() === 'bool';
-        if (!$param1IsUntypedArrayStdClassOrDomain || !$param2IsReferenceArray || !$returnTypeIsBool) {
+        if (!$param1IsUntypedArrayStdClassOrDomain || !$returnTypeIsBool) {
             throw new InvalidArgumentException('Closure must declare a boolean return type and accept exactly two arguments: context [array, stdClass or Domain] and errors [array by reference].');
         }
         $this->closure = $closure;
     }
 
-    public function getValue(array &$errors,int $timoutSecs = 0): bool
+    public function getValue(int $timoutSecs = 0): bool
     {
         /**
          * @var $closure Closure
          */
         $closure = $this->closure;
-        return $closure($this->currentContext,$errors);
+        return $closure($this->currentContext);
     }
 
 }

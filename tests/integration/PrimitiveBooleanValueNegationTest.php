@@ -9,13 +9,12 @@ use PHPUnit\Framework\TestCase;
 class PrimitiveBooleanValueNegationTest extends TestCase
 {
 
-    public function testNegateCallsGetValueOnInner()
+    public function testNegateCallsGetValueOnInner(): void
     {
         $innerMock = $this->createMock(PrimitiveBooleanValue::class);
         $innerMock->expects($this->once())->method('getValue');
         $neg = new NegationImpl($innerMock);
-        $errorsDummy = [];
-        $neg->getValue($errorsDummy);
+        $neg->getValue();
     }
 
 }

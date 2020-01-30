@@ -24,11 +24,8 @@ class GenericBooleanVariable extends AbstractBooleanExpression implements Boolea
     }
 
     /**
-     * @param array $errors
-     * @param int $timeoutSec
      * @return bool
      * @throws ReflectionException
-     * @throws Throwable
      */
     public function getValue(): bool
     {
@@ -41,7 +38,6 @@ class GenericBooleanVariable extends AbstractBooleanExpression implements Boolea
 
     /**
      * @return bool
-     * @throws ReflectionException
      */
     public function isBound(): bool
     {

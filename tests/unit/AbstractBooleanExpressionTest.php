@@ -3,19 +3,17 @@
 namespace MBauer\BooleanLogic\tests\unit;
 
 use MBauer\BooleanLogic\AbstractBooleanExpression;
-use MBauer\BooleanLogic\Biconditional;
 use MBauer\BooleanLogic\Conjunction;
 use MBauer\BooleanLogic\Disjunction;
 use MBauer\BooleanLogic\MaterialConditional;
 use MBauer\BooleanLogic\Negation;
 use MBauer\BooleanLogic\PrimitiveBooleanValue;
-use PHPUnit\Framework\MockObject\MockBuilder;
 use PHPUnit\Framework\TestCase;
 
 class AbstractBooleanExpressionTest extends TestCase
 {
 
-    public function testImplies()
+    public function testImplies(): void
     {
         $mockInnervalue = $this->createMock(PrimitiveBooleanValue::class);
         $mockInnervalue->method('getValue')->willReturn(true);
@@ -24,7 +22,7 @@ class AbstractBooleanExpressionTest extends TestCase
         $this->assertInstanceOf(MaterialConditional::class,$result);
     }
 
-    public function testIsImpliedBy()
+    public function testIsImpliedBy(): void
     {
         $mockInnervalue = $this->createMock(PrimitiveBooleanValue::class);
         $mockInnervalue->method('getValue')->willReturn(true);
@@ -33,7 +31,7 @@ class AbstractBooleanExpressionTest extends TestCase
         $this->assertInstanceOf(MaterialConditional::class,$result);
     }
 
-    public function testNot()
+    public function testNot(): void
     {
         $mockInnervalue = $this->createMock(PrimitiveBooleanValue::class);
         $mockInnervalue->method('getValue')->willReturn(true);
@@ -42,7 +40,7 @@ class AbstractBooleanExpressionTest extends TestCase
     }
 
 
-    public function testOr()
+    public function testOr(): void
     {
         $mockInnervalue = $this->createMock(PrimitiveBooleanValue::class);
         $mockInnervalue->method('getValue')->willReturn(true);
@@ -51,7 +49,7 @@ class AbstractBooleanExpressionTest extends TestCase
         $this->assertInstanceOf(Disjunction::class,$result);
     }
 
-    public function testAnd()
+    public function testAnd(): void
     {
         $mockInnervalue = $this->createMock(PrimitiveBooleanValue::class);
         $mockInnervalue->method('getValue')->willReturn(true);
@@ -60,15 +58,9 @@ class AbstractBooleanExpressionTest extends TestCase
         $this->assertInstanceOf(Conjunction::class,$result);
     }
 
-    public function testBiconditional()
+    public function testBiconditional(): void
     {
 
     }
-
-    protected function tearDown(): void
-    {
-        parent::tearDown();
-    }
-
 
 }

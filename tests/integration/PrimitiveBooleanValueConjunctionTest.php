@@ -8,14 +8,13 @@ use PHPUnit\Framework\TestCase;
 
 class PrimitiveBooleanValueConjunctionTest extends TestCase
 {
-    public function testConjunctGetValueCallsInnerGetValues()
+    public function testConjunctGetValueCallsInnerGetValues(): void
     {
         $innerMockA = $this->createMock(PrimitiveBooleanValue::class);
         $innerMockA->expects($this->once())->method('getValue');
         $innerMockB = $this->createMock(PrimitiveBooleanValue::class);
         $innerMockB->expects($this->once())->method('getValue');
         $cond = new MaterialConditionalImpl($innerMockA,$innerMockB);
-        $errorsDummy = [];
-        $cond->getValue($errorsDummy);
+        $cond->getValue();
     }
 }

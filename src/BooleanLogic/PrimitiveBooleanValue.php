@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace MBauer\BooleanLogic;
 
 
-class PrimitiveBooleanValue extends AbstractBooleanExpression implements BooleanExpression
+class PrimitiveBooleanValue extends AbstractBooleanExpression
 {
 
     public function __construct(bool $value)
