@@ -29,7 +29,7 @@ abstract class AbstractBooleanExpression implements BooleanExpression
         $this->value = $value;
     }
 
-    public function getValue(array &$errors): bool
+    public function getValue(): bool
     {
         return $this->value;
     }
@@ -68,7 +68,6 @@ abstract class AbstractBooleanExpression implements BooleanExpression
      * @param $context
      * @param string $name
      * @return bool
-     * @throws ReflectionException
      */
     public static function contextHasValueForName($context, string $name): bool
     {
@@ -109,11 +108,10 @@ abstract class AbstractBooleanExpression implements BooleanExpression
     /**
      * @param string $key
      * @param $context
-     * @param int $timeoutSecs
-     * @return Promise|bool|mixed|null
-     * @throws Throwable
+     * @return bool|mixed|null
+     * @throws ReflectionException
      */
-    public static function getValueFromContextForKey(string $key, $context, int $timeoutSecs = 0)
+    public static function getValueFromContextForKey(string $key, $context)
     {
         $val = null;
         $isArr = is_array($context);
@@ -143,9 +141,8 @@ abstract class AbstractBooleanExpression implements BooleanExpression
             }
         }
         if ($isObj && $val instanceof NamedBooleanExpression) {
-            $dummyErrors = [];
             $val->bindEvaluationContext($context);
-            $val = $val->getValue($dummyErrors);
+            $val = $val->getValue();
         }
         return $val;
     }

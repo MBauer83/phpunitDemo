@@ -30,12 +30,12 @@ class GenericBooleanVariable extends AbstractBooleanExpression implements Boolea
      * @throws ReflectionException
      * @throws Throwable
      */
-    public function getValue(array &$errors,int $timeoutSec = 0): bool
+    public function getValue(): bool
     {
         if (!$this->isBound()) {
             throw new RuntimeException('Variable [' . $this->getName() . '] is not bound at runtime.');
         }
-        $val = self::getValueFromContextForKey($this->getName(),$this->currentContext,$timeoutSec);
+        $val = self::getValueFromContextForKey($this->getName(),$this->currentContext);
         return $val;
     }
 

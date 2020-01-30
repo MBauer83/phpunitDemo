@@ -26,9 +26,9 @@ class DisjunctionImpl extends AbstractBooleanExpression implements Disjunction
         return new self($a,$b);
     }
 
-    public function getValue(array &$errors): bool
+    public function getValue(): bool
     {
-        return $this->disjunctA->getValue($errors) || $this->disjunctB->getValue($errors);
+        return $this->disjunctA->getValue() || $this->disjunctB->getValue();
     }
 
 

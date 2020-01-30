@@ -12,7 +12,7 @@ namespace MBauer\BooleanLogic;
 
 interface BooleanExpression
 {
-    public function getValue(array &$errors): bool;
+    public function getValue(): bool;
     public function and(BooleanExpression $conjunctB): Conjunction;
     public function or(BooleanExpression $disjunctB): Disjunction;
     public function not(): Negation;

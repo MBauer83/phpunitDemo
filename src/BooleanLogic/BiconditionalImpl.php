@@ -53,10 +53,10 @@ class BiconditionalImpl extends AbstractBooleanExpression implements Bicondition
         return (!($this->leftValue instanceof BooleanVariable) || $this->leftValue->isBound()) && ((!$this->rightValue instanceof BooleanVariable) || $this->rightValue->isBound());
     }
 
-    public function getValue(array &$errors): bool
+    public function getValue(): bool
     {
-        $aVal = null === $this->leftValue ? false : $this->leftValue->getValue($errors);
-        $bVal = null === $this->rightValue ? false : $this->rightValue->getValue($errors);
+        $aVal = null === $this->leftValue ? false : $this->leftValue->getValue();
+        $bVal = null === $this->rightValue ? false : $this->rightValue->getValue();
         return $aVal === $bVal;
     }
 

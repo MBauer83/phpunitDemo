@@ -20,9 +20,8 @@ use function is_object;
 
 class Domain implements ArrayAccess, IteratorAggregate
 {
-    protected $elements;
-    protected $variableNames = [];
-    protected $contextValues = [];
+    protected array $elements = [];
+    protected array $variableNames = [];
 
     protected function add(NamedBooleanExpression $namedBooleanValue): void
     {
@@ -34,12 +33,12 @@ class Domain implements ArrayAccess, IteratorAggregate
         }
     }
 
-    public function getIterator()
+    public function getIterator(): \Iterator
     {
         return new ArrayIterator($this->elements);
     }
 
-    public function offsetExists($offset)
+    public function offsetExists($offset): bool
     {
         return array_key_exists($offset,$this->elements);
     }
@@ -49,7 +48,7 @@ class Domain implements ArrayAccess, IteratorAggregate
         return $this->__get($offset);
     }
 
-    public function offsetSet($offset, $value)
+    public function offsetSet($offset, $value): void
     {
         if (!is_object($value) || !($value instanceof NamedBooleanExpression)) {
             throw new InvalidArgumentException('Can only set valued of type NamedBooleanExpression.');
@@ -60,7 +59,7 @@ class Domain implements ArrayAccess, IteratorAggregate
         $this->add($value);
     }
 
-    public function offsetUnset($offset)
+    public function offsetUnset($offset): void
     {
         if (array_key_exists($offset,$this->elements)) {
             unset($this->elements[$offset]);
@@ -72,28 +71,14 @@ class Domain implements ArrayAccess, IteratorAggregate
 
     public function __get($name)
     {
-        if (array_key_exists($name,$this->contextValues)) {
-            $val = $this->contextValues[$name];
+        if (array_key_exists($name,$this->elements)) {
+            $val = $this->elements[$name];
             if (is_object($val) && $val instanceof BooleanExpression) {
-                $dummy = [];
-                return $val->getValue($dummy);
+
+                return $val->getValue();
             }
         }
-
-        if (array_key_exists($name,$this->elements)) {
-            $el = $this->elements[$name];
-            /**
-             * @var $el NamedBooleanExpression
-             */
-            $dummy = [];
-            return $el->getValue($dummy);
-        }
         throw new OutOfBoundsException('Offset [' . $name . '] does not exist.');
-    }
-
-    public function setContextValue(string $name, $value)
-    {
-        $this->contextValues[$name] = $value;
     }
 
 }

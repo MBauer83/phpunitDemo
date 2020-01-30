@@ -26,9 +26,9 @@ class ConjunctionImpl extends AbstractBooleanExpression implements Conjunction
         return new self($a,$b);
     }
 
-    public function getValue(array &$errors): bool
+    public function getValue(): bool
     {
-        return $this->conjunctA->getValue($errors) && $this->conjunctB->getValue($errors);
+        return $this->conjunctA->getValue() && $this->conjunctB->getValue();
     }
 
     public function getConjunctA(): BooleanExpression

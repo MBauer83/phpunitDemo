@@ -38,16 +38,14 @@ class NegationImplTest extends TestCase
     public function testNegateTrueIsFalse()
     {
         $notTrue = new NegationImpl($this->trueValFixture);
-        $errorsDummy = [];
-        $this->assertFalse($notTrue->getValue($errorsDummy));
+        $this->assertFalse($notTrue->getValue());
     }
 
 
     public function testNegateFalseIsTrue()
     {
         $notFalse = new NegationImpl($this->falseValFixture);
-        $errorsDummy = [];
-        $this->assertTrue($notFalse->getValue($errorsDummy));
+        $this->assertTrue($notFalse->getValue());
     }
 
     public function testGetInnerValue()

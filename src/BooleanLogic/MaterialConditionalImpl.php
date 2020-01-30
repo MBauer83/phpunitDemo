@@ -32,13 +32,13 @@ class MaterialConditionalImpl extends AbstractBooleanExpression implements Mater
         $this->consequent = $consequent;
     }
 
-    public function getValue(array &$errors): bool
+    public function getValue(): bool
     {
         $antVal = null;
         if (null !== $this->antecedent) {
-            $antVal = $this->antecedent->getValue($errors);
+            $antVal = $this->antecedent->getValue();
         }
-        $conVal = $this->consequent->getValue($errors);
+        $conVal = $this->consequent->getValue();
         $retVal = !($antVal === true && $conVal === false);
         return $retVal;
     }

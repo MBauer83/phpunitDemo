@@ -19,9 +19,9 @@ class NegationImpl extends AbstractBooleanExpression implements Negation
         $this->innerValue = $innerValue;
     }
 
-    public function getValue(array &$errors): bool
+    public function getValue(): bool
     {
-        return !$this->innerValue->getValue($errors);
+        return !$this->innerValue->getValue();
     }
 
 
